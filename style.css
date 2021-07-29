@@ -1218,8 +1218,29 @@ footer .agency p {
         padding: 120px 0;
         margin: 0 auto;
     }
-
     .actu main article p {
         font-size: 20px;
     }
+}
+
+/******************************************
+        legacy pages
+*******************************************/
+
+.mentions {
+    background-color: var(--dark-grey);
+}
+
+.mentions h4 {
+    margin-top: 70px;
+}
+
+.mentions .present li {
+    color: var(--text-grey);
+    font-size: 22px;
+}
+
+.mentions .present a {
+    font-size: 22px;
+    color: var(--fluo-blue);
 }
