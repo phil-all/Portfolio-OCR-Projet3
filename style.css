@@ -25,6 +25,7 @@
     --fluo-pink: #fe277e;
     --fluo-yellow: #fcfe19;
     --fluo-blue: #47ead0;
+    --fluo-red: #ff3344;
     --text-grey: #acacac;
     --soft-font: 'Didact Gothic', sans-serif;
     --neon-font: 'Megrim', cursive;
@@ -60,6 +61,10 @@ h4 {
     font-family: var(--bold-font);
     font-size: 17px;
     text-transform: uppercase;
+}
+
+p, li {
+    color: var(--text-grey);
 }
 
 .pink-bg {
@@ -217,20 +222,109 @@ h4 {
     }
     .main-menu .menu li a {
         padding: 0em 1.5em;
+        box-sizing: unset;
     }
     .main-menu:hover {
-        background-color: rgba(13, 15, 13, 0.7);
-        box-shadow: 0 6px 4px rgba(13, 15, 13, 0.7);
+        background-color: rgba(13, 15, 13, 0.95);
+        box-shadow: 0 6px 4px rgba(13, 15, 13, 0.95);
         height: 120px;
     }
+
+    /* neon effect */
+
+    .main-menu .menu {
+        overflow: visible;
+    }
     .main-menu:hover .menu li a {
-        color: #acacab;
+        color: var(--light-grey);
+    }
+    .menu:hover a {
+        color: #fff;
+    }
+    .menu a .blur {
+        position: relative;
+        z-index: 5;
+    }
+    .menu:hover a .blur::before {
+        content: "";
+        width: 120%;
+        height: 120%;
+        position: absolute;
+        left: 5px;
+        filter: blur(50px);
+    }
+    .menu:hover a .blur::after {
+        filter: blur(3px) brightness(0);
+        position: absolute;
+        right: 5px;
+    }
+    .hm:hover a .blur::after, 
+    .pr:hover a .blur::after, 
+    .nw:hover a .blur::after,
+    .ic:hover a .blur::after {
+        content: attr(data-text);
+        animation: twinkle 1s linear .3s forwards;
+    }
+    @keyframes twinkle {
+        0%{filter: blur(3px) brightness(1);}
+        1%{filter: blur(3px) brightness(0);}
+        3%{filter: blur(3px) brightness(1);}
+        5%{filter: blur(3px) brightness(0);}
+        14%{filter: blur(3px) brightness(1);}
+        19%{filter: blur(3px) brightness(0);}
+        25%{filter: blur(3px) brightness(1);}
+        38%{filter: blur(3px) brightness(0);}
+        40%{filter: blur(3px) brightness(1);}
+        49%{filter: blur(3px) brightness(0);}
+        70%{filter: blur(3px) brightness(1);}
+        80%{filter: blur(3px) brightness(0);}
+        100%{filter: blur(3px) brightness(1);}
+    }
+    .hm:hover a {
+        text-shadow: 0 0 8px var(--fluo-pink);
+    }
+    .hm:hover a .blur::before {
+        background: var(--fluo-pink);
+    }
+    .hm:hover a .blur::after {
+        color: var(--fluo-pink);
+    }
+    .pr:hover a {
+        text-shadow: 0 0 8px var(--fluo-yellow);
+    }
+    .pr:hover a .blur::before {
+        background: var(--fluo-yellow);
+    }
+    .pr:hover a .blur::after {
+        color: var(--fluo-yellow);
+    }
+    .nw:hover a {
+        text-shadow: 0 0 8px var(--fluo-blue);
+    }
+    .nw:hover a .blur::before {
+        background: var(--fluo-blue);
+    }
+    .nw:hover a .blur::after {
+        color: var(--fluo-blue);
+    }
+    .ic:hover a {
+        text-shadow: 0 0 8px var(--fluo-red);
+    }
+    .ic:hover a .blur::before {
+        background: var(--fluo-red);
+    }
+    .ic:hover a .blur::after {
+        color: var(--fluo-red);
     }
 }
 
 @media screen and (min-width: 1100px) {
     .main-menu .menu li a {
-        padding: 0em 2em;
+        padding: 0 2em;
+        transition: ease-in-out 0.6s;
+    }
+    .main-menu:hover .menu li a {
+        padding: 20px 2em;
     }
 }
 
@@ -733,7 +827,6 @@ footer .agency p {
     .home .form input {
         width: 100%;
     }
-
     .home .form select {
         width: 102%;
     }
