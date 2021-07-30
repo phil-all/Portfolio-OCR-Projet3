@@ -157,7 +157,7 @@ p, li {
     margin: 0;
     padding-bottom: 0;
     opacity: 0;
-    transition: margin .4s ease-in-out, padding-bottom .4s ease-in-out, max-height .4s ease-in-out, opacity .3s .1s ease-in-out, visibility 0.4s ease-in-out;
+    transition: margin .4s ease-in-out, padding-bottom .4s ease-in-out, max-height .35s ease-in-out, opacity .3s ease-in-out, visibility 0.4s ease-in-out;
     visibility: hidden;
 }
 
@@ -171,12 +171,19 @@ p, li {
 
 .main-menu .menu li a {
     display: inline-block;
-    padding: 2em;
+    padding: 1.5em 1em;
     text-decoration: none;
     color: #000;
     font-family: var(--neon-font);
-    font-size: 2em;
+    font-size: 1.8em;
     font-weight: bold;
+}
+
+@media screen and (min-width: 600px) {
+    .main-menu .menu li a {
+        padding: 2em;
+        font-size: 2em;
+    }
 }
 
 @media screen and (min-width: 855px) {
@@ -251,34 +258,33 @@ p, li {
         height: 120%;
         position: absolute;
         left: 5px;
-        filter: blur(50px);
+        filter: blur(50px) brightness(0);
     }
     .menu:hover a .blur::after {
         filter: blur(3px) brightness(0);
         position: absolute;
         right: 5px;
+        animation: twinkle2 1s linear .3s forwards;
+    }
+    .hm:hover a .blur::before, 
+    .pr:hover a .blur::before, 
+    .nw:hover a .blur::before,
+    .ic:hover a .blur::before{
+        animation: twinkle1 1s linear .5s forwards;
+
     }
     .hm:hover a .blur::after, 
     .pr:hover a .blur::after, 
     .nw:hover a .blur::after,
     .ic:hover a .blur::after {
         content: attr(data-text);
-        animation: twinkle 1s linear .3s forwards;
+        animation: twinkle2 1s linear .3s forwards;
     }
-    @keyframes twinkle {
-        0%{filter: blur(3px) brightness(1);}
-        1%{filter: blur(3px) brightness(0);}
-        3%{filter: blur(3px) brightness(1);}
-        5%{filter: blur(3px) brightness(0);}
-        14%{filter: blur(3px) brightness(1);}
-        19%{filter: blur(3px) brightness(0);}
-        25%{filter: blur(3px) brightness(1);}
-        38%{filter: blur(3px) brightness(0);}
-        40%{filter: blur(3px) brightness(1);}
-        49%{filter: blur(3px) brightness(0);}
-        70%{filter: blur(3px) brightness(1);}
-        80%{filter: blur(3px) brightness(0);}
-        100%{filter: blur(3px) brightness(1);}
+    .hm:hover a,
+    .pr:hover a,
+    .nw:hover a,
+    .ic:hover a{
+        animation: twinkle3 1s linear;
     }
     .hm:hover a {
         text-shadow: 0 0 8px var(--fluo-pink);
@@ -316,12 +322,55 @@ p, li {
     .ic:hover a .blur::after {
         color: var(--fluo-red);
     }
+    @keyframes twinkle1 {
+        0%{filter: blur(80px) brightness(.8);}
+        2%{filter: blur(80px) brightness(0);}
+        5%{filter: blur(80px) brightness(.8);}
+        8%{filter: blur(80px) brightness(0);}
+        16%{filter: blur(80px) brightness(.8);}
+        22%{filter: blur(80px) brightness(0);}
+        28%{filter: blur(90px) brightness(.8);}
+        38%{filter: blur(90px) brightness(0);}
+        60%{filter: blur(90px) brightness(.8);}
+        80%{filter: blur(90px) brightness(0);}
+        100%{filter: blur(50px) brightness(1);}
+    } 
+    @keyframes twinkle2 {
+        0%{filter: blur(3px) brightness(1);}
+        1%{filter: blur(3px) brightness(0);}
+        3%{filter: blur(3px) brightness(1);}
+        5%{filter: blur(3px) brightness(0);}
+        14%{filter: blur(3px) brightness(1);}
+        19%{filter: blur(3px) brightness(0);}
+        25%{filter: blur(3px) brightness(1);}
+        38%{filter: blur(3px) brightness(0);}
+        40%{filter: blur(3px) brightness(1);}
+        49%{filter: blur(3px) brightness(0);}
+        60%{filter: blur(3px) brightness(1);}
+        80%{filter: blur(3px) brightness(0);}
+        100%{filter: blur(3px) brightness(1);}
+    }
+    @keyframes twinkle3 {
+        0%{filter: brightness(1);}
+        2%{filter: brightness(.7);}
+        4%{filter: brightness(1);}
+        87%{filter: brightness(.4);}
+        19%{filter: brightness(1);}
+        22%{filter: brightness(.2);}
+        30%{filter: brightness(1);}
+        40%{filter: brightness(.3);}
+        45%{filter: brightness(1);}
+        49%{filter: brightness(.4);}
+        60%{filter: brightness(1);}
+        80%{filter: brightness(.5);}
+        100%{filter: brightness(1);}
+    }
 }
 
 @media screen and (min-width: 1100px) {
     .main-menu .menu li a {
         padding: 0 2em;
-        transition: ease-in-out 0.6s;
+        transition: ease-in-out 0.3s;
     }
     .main-menu:hover .menu li a {
         padding: 20px 2em;
@@ -462,7 +511,7 @@ footer .agency p {
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #000;
-    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 0 2000px rgba(43, 41, 41, 0.365);
     height: 100vh;
     display: flex;
     align-items: center;
@@ -621,6 +670,10 @@ footer .agency p {
         height: 335px;
         width: 430px;
     }
+    .text-box article {
+        width: 400px;
+        padding-left: 5px;
+    }
 }
 
 /******************************************
@@ -722,20 +775,20 @@ footer .agency p {
         padding: 15px;
     }
     .news-box a img {
-        height: 215px;
-        filter: grayscale(1) brightness(80%);
-        -webkit-filter: grayscale(1) brightness(80%);
+        height: 300px;
+        filter: grayscale(.6) brightness(80%);
+        -webkit-filter: grayscale(.6) brightness(80%);
         transition: ease-in-out 0.4s;
     }
     .news-box a img:hover {
         filter: grayscale(0.5);
-        -webkit-filter: grayscale(0.5);
+        -webkit-filter: grayscale(0.2);
     }
     .news-box h3 {
-        top: 150px;
+        top: 250px;
     }
     .news-box p {
-        top: 180px;
+        top: 280px;
         font-weight: bold;
     }
 }
@@ -1336,6 +1389,13 @@ footer .agency p {
     background-color: var(--dark-grey);
 }
 
+.mentions .about-container {
+    padding: 0 10px;
+}
+
+.mentions h2 {
+    padding-top: 70px;
+}
 .mentions h4 {
     margin-top: 70px;
 }
